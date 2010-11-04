@@ -12,29 +12,36 @@ def main():
   
   parser = optparse.OptionParser()
   parser.add_option('-r', '--regex', dest='regex', default=DEFAULT_REGEX)
+  parser.add_option('-e', '--exemptions', dest='exemptions', default=None)
   options, args = parser.parse_args()
   
+  exemptions = []
+  if options.exemptions:
+    exemptions = options.exemtions.split(',')
+  
   code = sys.stdin.read()
-  minified = minify(code, regex=options.regex)
+  minified = minify(code, regex=options.regex, exemptions=exemptions)
   sys.stdout.write(minified)
 
 
 
-def minify(code, regex=DEFAULT_REGEX):
-  mapping = findMapping(code, regex=regex)
+def minify(code, regex=DEFAULT_REGEX, exemptions=[]):
+  mapping = findMapping(code, regex=regex, exemptions=exemptions)
   for longName, shortName in mapping.items():
     code.replace(longName, shortName)
   return code
 
 
-def findMapping(code, regex=DEFAULT_REGEX):
+def findMapping(code, regex=DEFAULT_REGEX, exemptions=[]):
   
   mapping = {}
   
   longNames_freq = {}
+  exemptions = set(exemptions)
   for m in re.finditer(regex, code):
     name = m.group(1)
-    longNames_freq[name] = longNames_freq.get(name, 0) + 1
+    if name not in exemptions:
+      longNames_freq[name] = longNames_freq.get(name, 0) + 1
   
   shortNames_iter = gen_names()
   for longName, count in sorted(
