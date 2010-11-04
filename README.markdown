@@ -3,7 +3,7 @@
 
 Automatic hardcore minification is a hard problem, especially when you want to jointly minify muiltiple types of things (e.g. a large set of JavaScript and CSS and HTML files).
 
-gordian-minifier slices that knot by simply using a regex.
+gordian-minifier [slices that knot](http://duckduckgo.com/?q=Gordian+knot) by simply using a regex.
 
 Each long name matching a regex is replaced by the shortest available alphabetic string not occuring anywhere in the code so far.
 
