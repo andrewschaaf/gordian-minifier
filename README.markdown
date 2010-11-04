@@ -5,7 +5,7 @@ Automatic hardcore minification is a hard problem, especially when you want to j
 
 gordian-minifier [slices that knot](http://duckduckgo.com/?q=Gordian+knot) by simply using a regex.
 
-Each long name matching a regex is replaced by the shortest available alphabetic string not occuring anywhere in the code so far.
+Each name that matches a regex is replaced by the shortest available alphabetic string not occuring anywhere in the code so far.
 
 This is done in order of long-name frequency, so your most frequent long names get dibs on the shortest available strings.
 
