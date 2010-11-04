@@ -2,6 +2,7 @@
 
 import re, itertools, optparse
 
+
 DEFAULT_REGEX = r'''(?x)
     [^a-zA-Z_](
         (?:_[a-zA-Z0-9_]+)|
