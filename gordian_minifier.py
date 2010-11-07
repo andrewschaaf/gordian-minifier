@@ -29,7 +29,7 @@ def main():
 def minify(code, regex=DEFAULT_REGEX, exemptions=[]):
   mapping = findMapping(code, regex=regex, exemptions=exemptions)
   for longName, shortName in mapping.items():
-    code.replace(longName, shortName)
+    code = code.replace(longName, shortName)
   return code
 
 
