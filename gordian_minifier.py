@@ -50,7 +50,6 @@ def findMapping(code, regex=DEFAULT_REGEX, exemptions=[]):
                               cmp=lambda x, y: -cmp(x[1], y[1])):
     for shortName in shortNames_iter:
       if code.find(shortName) == -1:
-        print(count, longName, shortName)
         code = code.replace(longName, shortName)
         mapping[longName] = shortName
         break
